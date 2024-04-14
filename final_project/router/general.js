@@ -20,6 +20,13 @@ public_users.post("/register", (req,res) => {
     return res.status(404).json({message: "Unable to register user."});
   });
  
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> aebf581e2ea54233b53756488b6ff4dd182a9b1d
 // Get the book (list available in the shop
 public_users.get('/',function (req, res) {
   //Write your code here
@@ -40,6 +47,10 @@ public_users.get('/isbn/:isbn',function (req, res) {
     
   });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> aebf581e2ea54233b53756488b6ff4dd182a9b1d
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
     const get_author = new Promise((resolve, reject) => { 
@@ -53,9 +64,34 @@ public_users.get('/author/:author',function (req, res) {
           }
         });
         res.send(JSON.stringify({booksbyauthor}, null, 4));
+<<<<<<< HEAD
+=======
 });
 get_author.then(() => console.log("Get Author"));
 
+});
+  
+// Get book details based on title
+public_users.get('/title/:title',function (req, res) {
+    const get_title = new Promise((resolve, reject) => { 
+        let booksbytitle = [];
+        let isbns = Object.keys(books);
+        isbns.forEach((isbn) => {
+          if(books[isbn]["title"] === req.params.title) {
+            booksbytitle.push({"isbn":isbn,
+                                "author":books[isbn]["author"],
+                                "reviews":books[isbn]["reviews"]});
+          }
+        });
+        res.send(JSON.stringify({booksbytitle}, null, 4));
+      });
+get_title.then(() => console.log("Get Title"));
+
+>>>>>>> aebf581e2ea54233b53756488b6ff4dd182a9b1d
+});
+get_author.then(() => console.log("Get Author"));
+
+<<<<<<< HEAD
 });
   
 // Get book details based on title
@@ -80,6 +116,16 @@ get_title.then(() => console.log("Get Title"));
 public_users.get('/review/:isbn',function (req, res) {
   const isbn = req.params.isbn;
   res.send(books[isbn]["reviews"])
+=======
+
+
+//  Get book review
+public_users.get('/review/:isbn',function (req, res) {
+  //Write your code here
+  const isbn = req.params.isbn;
+  res.send(books[isbn]["reviews"])
+  return res.status(300).json({message: "Yet to be implemented"});
+>>>>>>> aebf581e2ea54233b53756488b6ff4dd182a9b1d
 });
 
 
